@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>かまちょムシ登録</title>
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.22.0/sdk.js"></script>
+</head>
+<body>
+  <h1>かまちょムシ 登録ページ</h1>
+
+  <button id="loginBtn">LINEでログイン</button>
+
+  <script>
+    const liffId = "あなたの LIFF ID を入れる"; // 20085xxxxxx のやつ
+
+    async function main() {
+      await liff.init({ liffId });
+
+      document.getElementById("loginBtn").onclick = async () => {
+        if (!liff.isLoggedIn()) {
+          liff.login();
+        } else {
+          const profile = await liff.getProfile();
+          alert("ログイン成功: " + profile.userId);
+
+          // あなたのサーバに送る部分（後で説明）
+          // fetch("https://your-server/register", {...})
+        }
+      };
+    }
+    main();
+  </script>
+</body>
+</html>
